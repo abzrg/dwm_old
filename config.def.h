@@ -1,5 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
+/* Constants */
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -31,7 +35,7 @@ static const Rule rules[] = {
     { "Gimp",           NULL,     NULL,           0,         1,          0,           0,        -1 },
     { "firefox",        NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
     { "Brave-browser",  NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-    { "Alacritty",             NULL,     NULL,           0,         0,          1,           0,        -1 },
+    { TERMCLASS,             NULL,     NULL,           0,         0,          1,           0,        -1 },
     { NULL,             NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -67,7 +71,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *web[]  = { "brave", NULL };
 static const char *mail[]  = { "thunderbird", NULL };
-static const char *filemgr[]  = { "lf", NULL };
+static const char *filemgr[]  = { "pcmanfm", NULL };
 
 /* multimedia keys */
 static const char *upvol[]     = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
@@ -86,11 +90,12 @@ static const char *pvpn[]  = { "/home/ali/.local/scripts/Vpn", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ MODKEY,                       XK_r,      spawn,          SHCMD("alacritty -e lf") },
+    { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = filemgr } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = web    } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = mail   } },
-	{ MODKEY,                       XK_f,      spawn,          {.v = filemgr  } },
     { MODKEY,                       XK_p,      spawn,          {.v = pctlpp } },
     { MODKEY,                       XK_s,      spawn,          {.v = pctln  } },
     { MODKEY,                       XK_a,      spawn,          {.v = pctlp  } },
