@@ -57,6 +57,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask
+#define ALT Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -94,6 +95,7 @@ static const char *pvpn[]  = { "/home/ali/.local/scripts/Vpn", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ ALT,                          XK_Escape, spawn,          SHCMD("toglayout") },
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("alacritty -e lf") },
     { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = filemgr } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
