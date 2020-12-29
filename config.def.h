@@ -14,8 +14,8 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=11" };
-static const char dmenufont[]       = "monospace:size=11";
+static const char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
+static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -57,6 +57,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask
+#define ALT Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -94,6 +95,7 @@ static const char *pvpn[]  = { "/home/ali/.local/scripts/Vpn", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ ALT,                          XK_Escape, spawn,          SHCMD("toglayout") },
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("alacritty -e lf") },
     { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = filemgr } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
