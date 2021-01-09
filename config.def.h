@@ -24,7 +24,7 @@ static const char dmenufont[]           = "monospace:size=10";
 static const char normbgcolor[]         = "#222222";
 static const char normbordercolor[]     = "#444444";
 static const char normfgcolor[]         = "#bbbbbb";
-static const char selfgcol[]            = "#eeeeee";
+static const char selfgcolor[]          = "#eeeeee";
 static const char selbordercolor[]      = "#770000";
 static const char selbgcolor[]          = "#005577";
 static const char *colors[][3]      = {
@@ -97,7 +97,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *web[]  = { "brave", NULL };
 static const char *mail[]  = { "thunderbird", NULL };
