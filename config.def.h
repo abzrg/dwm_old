@@ -41,11 +41,13 @@ typedef struct {
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {"st", "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
 const char *spcmd3[] = {"telegram-desktop", NULL };
+const char *spcmd4[] = {"st", "-n", "spncmpcpp", "-g", "120x34", "-e", "ncmpcpp", NULL };
 static Sp scratchpads[] = {
 	/* name                  cmd  */
 	{"spterm",              spcmd1},
 	{"spcalc",              spcmd2},
-	{"telegram-desktop",    spcmd3},
+	{"sptlgrm",             spcmd3},
+	{"spncmpcpp",           spcmd4},
 };
 
 /* tagging */
@@ -65,7 +67,8 @@ static const Rule rules[] = {
     // Scratchpads
 	{ NULL,		        "spterm",		NULL,	  SPTAG(0),	 1,         1,	        1,	         0,	       -1 },
 	{ NULL,		        "spcalc",		NULL,	  SPTAG(1),	 1,         1,	        1,	         0,	       -1 },
-	{ NULL,		        "telegram-desktop",	NULL, SPTAG(2),	 1,         1,	        1,	         0,	       -1 },
+	{ NULL,		        "telegram-desktop",	    NULL,     SPTAG(2),	 1,         1,	        0,	         0,	       -1 },
+	{ NULL,		        "spncmpcpp",	NULL,     SPTAG(3),	 1,         1,	        1,	         0,	       -1 },
 };
 
 /* layout(s) */
@@ -176,6 +179,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,            	XK_Return, togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_c,	   togglescratch,  {.ui = 1 } },
 	{ MODKEY|ShiftMask,            	XK_t,	   togglescratch,  {.ui = 2 } },
+	{ MODKEY|ShiftMask,            	XK_m,	   togglescratch,  {.ui = 3 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
