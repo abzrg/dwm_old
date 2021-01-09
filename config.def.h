@@ -60,6 +60,7 @@ static const Rule rules[] = {
 	 */
     /* class            instance  title           tags mask  iscentered isfloating  isterminal  noswallow  monitor */
     { "Gimp",           NULL,     NULL,           0,         0,         1,          0,           0,        -1 },
+    { "mpv",            NULL,     NULL,           0,         1,         0,          0,           0,        -1 },
     { "firefox",        NULL,     NULL,           1 << 8,    0,         0,          0,          -1,        -1 },
     { "Brave-browser",  NULL,     NULL,           1 << 8,    0,         0,          0,          -1,        -1 },
     { TERMCLASS,             NULL,     NULL,           0,    0,         0,          1,           0,        -1 },
@@ -125,21 +126,27 @@ static const char *pvpn[]  = { "/home/ali/.local/scripts/Vpn", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ ALT,                          XK_Escape, spawn,          SHCMD("toglayout") },
-	{ MODKEY,                       XK_r,      spawn,          SHCMD("alacritty -e lf") },
-    { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = filemgr } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_e,      spawn,          SHCMD("emacs") },
+	{ MODKEY,                       XK_n,      spawn,          SHCMD("alacritty -e newsboat") },
+	{ MODKEY,                       XK_r,      spawn,          SHCMD("alacritty -e lf") },
 	{ MODKEY,                       XK_w,      spawn,          {.v = web    } },
-	{ MODKEY,                       XK_e,      spawn,          {.v = mail   } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = mail   } },
     { MODKEY,                       XK_p,      spawn,          {.v = pctlpp } },
-    { MODKEY,                       XK_s,      spawn,          {.v = pctln  } },
-    { MODKEY,                       XK_a,      spawn,          {.v = pctlp  } },
+    { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = filemgr } },
     { MODKEY|ShiftMask,             XK_v,      spawn,          {.v = pvpn   } },
+
+	{ MODKEY,			            XK_comma,	spawn,		{.v = pctlp  } },
+	// { MODKEY|ShiftMask,	   	        XK_comma,	spawn,		SHCMD("mpc seek 0%") },
+	{ MODKEY,			            XK_period,	spawn,		{.v = pctln  } },
+	// { MODKEY|ShiftMask,		        XK_period,	spawn,		SHCMD("mpc repeat") },
+
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,	                    XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 
@@ -161,25 +168,30 @@ static Key keys[] = {
 	// { MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } },
 	// { MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } },
 
-	{ Mod1Mask,                     XK_space,  zoom,           {0} },
+	{ MODKEY,                       XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,	                    XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
+	{ MODKEY,	                    XK_y,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[2]} },
+	//{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+
+    // Multi-screen setting (see the man page)
+	{ MODKEY,			            XK_Left,	focusmon,	{.i = -1 } },
+	{ MODKEY|ShiftMask,		        XK_Left,	tagmon,		{.i = -1 } },
+	{ MODKEY,			            XK_Right,	focusmon,	{.i = +1 } },
+	{ MODKEY|ShiftMask,		        XK_Right,	tagmon,		{.i = +1 } },
+
+    // Scratchpads
 	{ MODKEY|ShiftMask,            	XK_Return, togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_c,	   togglescratch,  {.ui = 1 } },
-	{ MODKEY|ShiftMask,            	XK_t,	   togglescratch,  {.ui = 2 } },
-	{ MODKEY|ShiftMask,            	XK_m,	   togglescratch,  {.ui = 3 } },
+	{ MODKEY|ShiftMask,            	XK_m,	   togglescratch,  {.ui = 2 } },
+	{ MODKEY,	                	XK_m,	   togglescratch,  {.ui = 3 } },
+
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -189,12 +201,21 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+
+    // Reload dwm
+	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} },
+
+    // Media and brightness keys
     { 0,                            XF86XK_AudioLowerVolume,    spawn,  {.v = downvol  } },
     { 0,                            XF86XK_AudioMute,           spawn,  {.v = mutevol  } },
     { 0,                            XF86XK_AudioRaiseVolume,    spawn,  {.v = upvol    } },
     { 0,                            XF86XK_MonBrightnessUp,     spawn,  {.v = brupcmd  } },
     { 0,                            XF86XK_MonBrightnessDown,   spawn,  {.v = brdowncmd} },
+	{ MODKEY,			            XK_F1,		                spawn,	{.v = mutevol  } },
+	{ MODKEY,			            XK_F2,		                spawn, 	{.v = downvol  } },
+	{ MODKEY,			            XK_F3,		                spawn,	{.v = upvol    } },
+	{ MODKEY,			            XK_F11,		                spawn,	{.v = brdowncmd} },
+	{ MODKEY,			            XK_F12,		                spawn,	{.v = brupcmd  } },
 
 };
 
