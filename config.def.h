@@ -19,7 +19,7 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
+static const char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=11:antialias=true:autohint=true" };
 static const char dmenufont[]           = "monospace:size=10";
 static const char normbgcolor[]         = "#222222";
 static const char normbordercolor[]     = "#444444";
@@ -75,7 +75,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -125,7 +125,7 @@ static const char *pvpn[]  = { "/home/ali/.local/scripts/Vpn", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ ALT,                          XK_Escape, spawn,          SHCMD("toglayout") },
+	{ ALT,                          XK_Escape, spawn,          SHCMD("toglayout;pkill -RTMIN+2 dwmblocks") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_e,      spawn,          SHCMD("emacs") },
