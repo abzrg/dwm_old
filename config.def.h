@@ -125,7 +125,7 @@ static const char *pvpn[]  = { "/home/ali/.local/scripts/Vpn", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ ALT,                          XK_Escape, spawn,          SHCMD("toglayout") },
+	{ ALT,                          XK_Escape, spawn,          SHCMD("toglayout;pkill -RTMIN+2 dwmblocks") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_e,      spawn,          SHCMD("emacs") },
