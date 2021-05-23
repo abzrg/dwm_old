@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "alacritty"
-#define TERMCLASS "Alacritty"
+#define TERMINAL "st"
+#define TERMCLASS "st-256color"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -19,8 +19,8 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monaco:size=13", "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
-static const char dmenufont[]           = "monaco:size=13";
+static const char *fonts[]          = { "menlo:size=13", "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
+static const char dmenufont[]           = "menlo:size=13";
 static const char normbgcolor[]         = "#222222";
 static const char normbordercolor[]     = "#444444";
 static const char normfgcolor[]         = "#bbbbbb";
@@ -63,7 +63,8 @@ static const Rule rules[] = {
     { "mpv",            NULL,     NULL,           0,         1,         0,          0,           0,        -1 },
     { "firefox",        NULL,     NULL,           1 << 8,    0,         0,          0,          -1,        -1 },
     { "Brave-browser",  NULL,     NULL,           1 << 8,    0,         0,          0,          -1,        -1 },
-    { TERMCLASS,             NULL,     NULL,           0,    0,         0,          1,           0,        -1 },
+    { TERMCLASS,        NULL,     NULL,           0,         0,         0,          1,           0,        -1 },
+    { "st-256color",    NULL,     NULL,           0,         0,         0,          1,           0,        -1 },
     { NULL,             NULL,     "Event Tester", 0,         0,         0,          0,           1,        -1 }, /* xev */
     // Scratchpads
     { NULL,             "spterm",       NULL,     SPTAG(0),  1,         1,          1,           0,        -1 },
@@ -102,7 +103,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *web[]  = { "brave", NULL };
 static const char *mail[]  = { "thunderbird", NULL };
 static const char *filemgr[]  = { "pcmanfm", NULL };
@@ -129,8 +130,8 @@ static Key keys[] = {
     { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
     { MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
     { MODKEY,                       XK_e,      spawn,          SHCMD("emacsclient -c") },
-    { MODKEY,                       XK_n,      spawn,          SHCMD("alacritty -e newsboat") },
-    { MODKEY,                       XK_r,      spawn,          SHCMD("alacritty -e lf") },
+    { MODKEY,                       XK_n,      spawn,          SHCMD("$TERMINAL -e newsboat") },
+    { MODKEY,                       XK_r,      spawn,          SHCMD("$TERMINAL -e lf") },
     { MODKEY,                       XK_w,      spawn,          {.v = web    } },
     { MODKEY|ShiftMask,             XK_e,      spawn,          {.v = mail   } },
     { MODKEY,                       XK_p,      spawn,          {.v = pctlpp } },
