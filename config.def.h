@@ -2,7 +2,7 @@
 
 /* Constants */
 #define TERMINAL "st"
-#define TERMCLASS "st-256color"
+#define TERMCLASS "St"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
