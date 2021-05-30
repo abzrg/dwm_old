@@ -19,8 +19,8 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "menlo:size=13", "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
-static const char dmenufont[]           = "menlo:size=13";
+static const char *fonts[]          = { "inconsolata:size=14", "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
+static const char dmenufont[]           = "inconsolata:size=14";
 static const char normbgcolor[]         = "#222222";
 static const char normbordercolor[]     = "#444444";
 static const char normfgcolor[]         = "#bbbbbb";
@@ -38,10 +38,10 @@ typedef struct {
     const char *name;
     const void *cmd;
 } Sp;
-const char *spcmd1[] = {"st", "-n", "spterm", "-g", "80x20", NULL };
+const char *spcmd1[] = {"st", "-n", "spterm", "-g", "90x15", NULL };
 const char *spcmd2[] = {"st", "-n", "spcalc", "-f", "monospace:size=20", "-g", "50x15", "-e", "bc", "-lq", NULL };
 const char *spcmd3[] = {"telegram-desktop", NULL };
-const char *spcmd4[] = {"st", "-n", "spncmpcpp", "-g", "110x30", "-e", "ncmpcpp", NULL };
+const char *spcmd4[] = {"st", "-n", "spncmpcpp", "-g", "110x20", "-e", "ncmpcpp", NULL };
 static Sp scratchpads[] = {
     /* name                  cmd  */
     {"spterm",              spcmd1},
@@ -177,6 +177,7 @@ static Key keys[] = {
     { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[2]} },
     //{ MODKEY,                       XK_space,  setlayout,      {0} },
     { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+    { MODKEY,                       XK_s,      togglesticky,   {0} },
     { MODKEY,                       XK_f,      togglefullscr,  {0} },
     { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
