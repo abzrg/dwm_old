@@ -191,7 +191,6 @@ static Key keys[] = {
     TAGKEYS( XK_9, 8)
 
     { ALT,                 XK_Escape, spawn,          SHCMD("toglayout;pkill -RTMIN+2 dwmblocks") },
-    { MODKEY,              XK_e,      spawn,          SHCMD("emacsclient -c"                    ) },
     { MODKEY,              XK_n,      spawn,          SHCMD("$TERMINAL -e newsboat"             ) },
     { MODKEY,              XK_r,      spawn,          SHCMD("$TERMINAL -e lf"                   ) },
 
