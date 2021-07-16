@@ -6,13 +6,13 @@
 #define TELEGRAM "telegram-desktop"
 
 /* appearance */
-static unsigned int borderpx       = 0;  /* border pixel of windows */
+static unsigned int borderpx       = 2;  /* border pixel of windows */
 static unsigned int snap           = 32; /* snap pixel */
 static const unsigned int gappih         = 10; /* horiz inner gap between windows */
 static const unsigned int gappiv         = 10; /* vert inner gap between windows */
 static const unsigned int gappoh         = 10; /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov         = 10; /* vert outer gap between windows and screen edge */
-static const int smartgaps               = 0;  /* 1 means no outer gap when there is only one window */
+static const int smartgaps               = 1;  /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;  /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;  /* systray spacing */
 static const int systraypinningfailfirst = 1;  /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
@@ -40,7 +40,7 @@ typedef struct {
     const char *name;
     const void *cmd;
 } Sp;
-const char *spcmd1[]    = {"st", "-n", "spterm", "-g", "90x23", NULL };
+const char *spcmd1[]    = {"st", "-n", "spterm", "-g", "90x23", "-e", "scroll", "/bin/zsh", NULL };
 const char *spcmd2[]    = {"st", "-n", "spcalc", "-f", "monospace:size=20", "-g", "50x15", "-e", "bc", "-lq", NULL };
 const char *spcmd3[]    = {"st", "-n", "spncmpcpp", "-g", "110x20", "-e", "ncmpcpp", NULL };
 const char *spcmd4[]    = {TELEGRAM, NULL };
@@ -115,7 +115,7 @@ static const char *dmenucmd[] = {
     "-sf", selfgcolor,
     NULL
 };
-static const char *termcmd[] = { "st", NULL };
+static const char *termcmd[] = { "st", "-e", "scroll", "/bin/zsh", NULL };
 static const char *web[] = { "brave", NULL };
 static const char *mail[] = { "thunderbird", NULL };
 static const char *filemgr[] = { "pcmanfm", NULL };
