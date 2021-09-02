@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
 #define TELEGRAM "telegram-desktop"
 
 /* appearance */
@@ -20,8 +20,8 @@ static const int showsystray             = 1;  /* 0 means no systray */
 static const int swallowfloating         = 0;  /* 1 means swallow floating windows by default */
 static int showbar                       = 1;  /* 0 means no bar */
 static int topbar                        = 1;  /* 0 means bottom bar */
-static char dwmfont[]                    = "sans:size=14";
-static char dmenufont[]                  = "sans:size=14";
+static char dwmfont[]                    = "mono:size=14";
+static char dmenufont[]                  = "mono:size=14";
 static char *fonts[]                     = { dwmfont, "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
 static char normbgcolor[]                = "#222222";
 static char normbordercolor[]            = "#444444";
@@ -40,7 +40,7 @@ typedef struct {
     const char *name;
     const void *cmd;
 } Sp;
-const char *spcmd1[]    = {"st", "-n", "spterm", "-g", "90x23", "-e", "scroll", "/bin/zsh", NULL };
+const char *spcmd1[]    = {"st", "-n", "spterm", "-g", "90x23", NULL };
 const char *spcmd2[]    = {"st", "-n", "spcalc", "-f", "monospace:size=20", "-g", "50x15", "-e", "bc", "-lq", NULL };
 const char *spcmd3[]    = {"st", "-n", "spncmpcpp", "-g", "110x20", "-e", "ncmpcpp", NULL };
 const char *spcmd4[]    = {TELEGRAM, NULL };
@@ -60,13 +60,16 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-    /* class            instance  title           tags mask  iscentered isfloating  isterminal  noswallow  monitor */
-    { "Gimp",           NULL,     NULL,           0,         0,         1,          0,           0,        -1 },
-    { "mpv",            NULL,     NULL,           0,         1,         0,          0,           0,        -1 },
-    { "firefox",        NULL,     NULL,           1 << 8,    0,         0,          0,          -1,        -1 },
-    { "Brave-browser",  NULL,     NULL,           1 << 8,    0,         0,          0,          -1,        -1 },
-    { TERMCLASS,        NULL,     NULL,           0,         0,         0,          1,           0,        -1 },
-    { "st-256color",    NULL,     NULL,           0,         0,         0,          1,           0,        -1 },
+    /* class                instance  title           tags mask  iscentered isfloating  isterminal  noswallow  monitor */
+
+    { "Gimp",               NULL,     NULL,           0,         0,         1,          0,           0,        -1 },
+    { "mpv",                NULL,     NULL,           0,         1,         0,          0,           0,        -1 },
+    { "Skype",              NULL,     NULL,           1 << 6,    0,         0,          0,          -1,        -1 },
+    { "firefox",            NULL,     NULL,           1 << 7,    0,         0,          0,          -1,        -1 },
+    { "Transmission-gtk",   NULL,     NULL,           1 << 7,    0,         0,          0,          -1,        -1 },
+    { "Brave-browser",      NULL,     NULL,           1 << 8,    0,         0,          0,          -1,        -1 },
+    { TERMCLASS,            NULL,     NULL,           0,         0,         0,          1,           0,        -1 },
+    { "st-256color",        NULL,     NULL,           0,         0,         0,          1,           0,        -1 },
     // xev
     { NULL,             NULL,     "Event Tester", 0,         0,         0,          0,           1,        -1 },
     // Scratchpads
@@ -115,7 +118,7 @@ static const char *dmenucmd[] = {
     "-sf", selfgcolor,
     NULL
 };
-static const char *termcmd[] = { "st", "-e", "scroll", "/bin/zsh", NULL };
+static const char *termcmd[] = { "alacritty", NULL };
 static const char *web[] = { "brave", NULL };
 static const char *mail[] = { "thunderbird", NULL };
 static const char *filemgr[] = { "pcmanfm", NULL };
