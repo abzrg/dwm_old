@@ -20,8 +20,8 @@ static const int showsystray             = 1;  /* 0 means no systray */
 static const int swallowfloating         = 0;  /* 1 means swallow floating windows by default */
 static int showbar                       = 1;  /* 0 means no bar */
 static int topbar                        = 1;  /* 0 means bottom bar */
-static char dwmfont[]                    = "mono:size=14";
-static char dmenufont[]                  = "mono:size=14";
+static char dwmfont[]                    = "mono:size=12";
+static char dmenufont[]                  = "mono:size=12";
 static char *fonts[]                     = { dwmfont, "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
 static char normbgcolor[]                = "#222222";
 static char normbordercolor[]            = "#444444";
